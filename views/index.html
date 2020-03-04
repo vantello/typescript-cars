@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Exercici Vehicles</title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Roboto+Mono&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <link rel=StyleSheet href="../css/styles.css" type="text/css" media="screen">
+
+        <script src="../models/car.js"></script>
+        <script src="../models/wheel.js"></script>
+        <script src="../controllers/controller.js"></script>
+    </head>
+    <body>
+        <div class="row">
+            <div class="col s12 red lighten-2 header">
+                <h3 class="bebas">EXERCICI VEHICLES</h3>
+                <p class="roboto">Primer exercici de Typescript</p>
+            </div>
+            <div class="col s12 m4 l2"></div>
+            <div class="col s12 m4 l8">
+                <div id="formCar">
+                    <h4 class="roboto center">Introdueix les dades del vehicle:</h4>
+                    <div class="input-field col s4">
+                        <i class="material-icons prefix">directions_car</i>
+                        <input id="brand" type="text" >
+                        <label for="brand" class="roboto">Marca</label>
+                    </div>
+                    <div class="input-field col s4">
+                        <i class="material-icons prefix">money</i>
+                        <input id="plate" type="tel" >
+                        <label for="plate" class="roboto">Matrícula</label>
+                    </div>
+                    <div class="input-field col s4">
+                        <i class="material-icons prefix">color_lens</i>
+                        <input id="color" type="tel" class="validate">
+                        <label for="color" class="roboto">Color</label>
+                    </div>
+                    <p class="center">
+                        <button class="button roboto center" onclick="createCar()">CREATE CAR</button>
+                    </p>
+                </div>
+                <div id="carDisplay" class="dNone">
+                    <h5 id="carTitle" class="roboto center">Well done, you created a car. Here it is!!</h4>
+                    <table class="centered">
+                        <thead>
+                            <tr>
+                                <th>Brand</th>
+                                <th>Plate</th>
+                                <th>Color</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="tdBrand"></td>
+                                <td id="tdPlate"></td>
+                                <td id="tdColor"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="center">
+                        <button class="button roboto center" onclick="createWheels()">CREATE WHEELS</button>
+                    </p>
+                </div>
+                <div id="formWheels" class="dNone">
+                    <h5 id="wheelsTitle" class="roboto center">Introdueix la informació de les rodes: </h4>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">directions_car</i>
+                        <input id="wheelBrand1" type="text" >
+                        <label for="wheelBrand1" class="roboto">Marca de la roda 1:</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">adjust</i>
+                        <input id="wheelDiameter1" type="number" >
+                        <label for="wheelDiameter1" class="roboto">Introdueix diàmetre de la roda 1:</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">directions_car</i>
+                        <input id="wheelBrand2" type="text" >
+                        <label for="wheelBrand2" class="roboto">Marca de la roda 2:</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">adjust</i>
+                        <input id="wheelDiameter2" type="number" >
+                        <label for="wheelDiameter2" class="roboto">Introdueix diàmetre de la roda 2:</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">directions_car</i>
+                        <input id="wheelBrand3" type="text" class="validate">
+                        <label for="wheelBrand3" class="roboto">Marca de la roda 3:</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">adjust</i>
+                        <input id="wheelDiameter3" type="number" >
+                        <label for="wheelDiameter3" class="roboto">Introdueix diàmetre de la roda 3:</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">directions_car</i>
+                        <input id="wheelBrand4" type="text">
+                        <label for="wheelBrand4" class="roboto">Marca de la roda 4:</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">adjust</i>
+                        <input id="wheelDiameter4" type="number">
+                        <label for="wheelDiameter4" class="roboto">Introdueix diàmetre de la roda 4:</label>
+                    </div>
+                    <p class="center">
+                        <button class="button roboto center" onclick="addWheels()">ADD WHEELS</button>
+                    </p>
+                </div>
+                <div id="showWheels" class="dNone">
+                    <h5 id="showWheelsTitle" class="roboto center">El cotxe i les seves rodes: </h4>
+                    <h6 id="showCar" class="roboto center"></h6>
+                        <table class="centered">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Brand</th>
+                                    <th>Diameter</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="wheel1"></td>
+                                    <td id="wBrand1"></td>
+                                    <td id="wDiameter1"></td>
+                                </tr>
+                                <tr>
+                                    <td id="wheel2"></td>
+                                    <td id="wBrand2"></td>
+                                    <td id="wDiameter2"></td>
+                                </tr>
+                                <tr>
+                                    <td id="wheel3"></td>
+                                    <td id="wBrand3"></td>
+                                    <td id="wDiameter3"></td>
+                                </tr>
+                                <tr>
+                                    <td id="wheel4"></td>
+                                    <td id="wBrand4"></td>
+                                    <td id="wDiameter4"></td>
+                                </tr>
+
+                            </tbody>
+                        </table> 
+                </div>
+            </div>
+            <div class="col s12 m4 l2"></div>
+        </div>
+    </body>
+    
+</html>
+
